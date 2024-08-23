@@ -46,58 +46,58 @@ gender_H = int(gender == "Hombre")
 gender_V = int(gender == "Mujer")
 
 # Entry Channels
-entry_channels = st.multiselect(
+entry_channels = st.selectbox(
     "Canales de Entrada:",
     ["KAT", "KFA", "KFC", "KHE", "KHK", "KHN", "KHQ", "RED", "Otros"]
 )
-entry_channel_KAT = int("KAT" in entry_channels)
-entry_channel_KFA = int("KFA" in entry_channels)
-entry_channel_KFC = int("KFC" in entry_channels)
-entry_channel_KHE = int("KHE" in entry_channels)
-entry_channel_KHK = int("KHK" in entry_channels)
-entry_channel_KHN = int("KHN" in entry_channels)
-entry_channel_KHQ = int("KHQ" in entry_channels)
-entry_channel_RED = int("RED" in entry_channels)
-entry_channel_others = int("Otros" in entry_channels)
+entry_channel_KAT = int(entry_channels == "KAT")
+entry_channel_KFA = int(entry_channels == "KFA")
+entry_channel_KFC = int(entry_channels == "KFC")
+entry_channel_KHE = int(entry_channels == "KHE")
+entry_channel_KHK = int(entry_channels == "KHK")
+entry_channel_KHN = int(entry_channels == "KHN")
+entry_channel_KHQ = int(entry_channels == "KHQ")
+entry_channel_RED = int(entry_channels == "RED")
+entry_channel_others = int(entry_channels == "Otros")
 
 # Segmentos
-segments = st.multiselect(
+segments = st.selectbox(
     "Segmentos:",
     ["01 - TOP", "02 - PARTICULARES", "03 - UNIVERSITARIO"]
 )
-segment_01_TOP = int("01 - TOP" in segments)
-segment_02_PARTICULARES = int("02 - PARTICULARES" in segments)
-segment_03_UNIVERSITARIO = int("03 - UNIVERSITARIO" in segments)
+segment_01_TOP = int(segments == "01 - TOP")
+segment_02_PARTICULARES = int(segments == "02 - PARTICULARES")
+segment_03_UNIVERSITARIO = int(segments == "03 - UNIVERSITARIO")
 
 # Region Codes
-region_codes = st.multiselect(
+region_codes = st.selectbox(
     "Códigos de Región:",
     ["2.0", "3.0", "6.0", "7.0", "8.0", "11.0", "12.0", "14.0", "15.0", "18.0", "28.0", "29.0", "30.0", "33.0", "35.0", "36.0", "37.0", "39.0", "41.0", "45.0", "46.0", "47.0", "50.0", "Otros"]
 )
-region_code_2_0 = int("2.0" in region_codes)
-region_code_3_0 = int("3.0" in region_codes)
-region_code_6_0 = int("6.0" in region_codes)
-region_code_7_0 = int("7.0" in region_codes)
-region_code_8_0 = int("8.0" in region_codes)
-region_code_11_0 = int("11.0" in region_codes)
-region_code_12_0 = int("12.0" in region_codes)
-region_code_14_0 = int("14.0" in region_codes)
-region_code_15_0 = int("15.0" in region_codes)
-region_code_18_0 = int("18.0" in region_codes)
-region_code_28_0 = int("28.0" in region_codes)
-region_code_29_0 = int("29.0" in region_codes)
-region_code_30_0 = int("30.0" in region_codes)
-region_code_33_0 = int("33.0" in region_codes)
-region_code_35_0 = int("35.0" in region_codes)
-region_code_36_0 = int("36.0" in region_codes)
-region_code_37_0 = int("37.0" in region_codes)
-region_code_39_0 = int("39.0" in region_codes)
-region_code_41_0 = int("41.0" in region_codes)
-region_code_45_0 = int("45.0" in region_codes)
-region_code_46_0 = int("46.0" in region_codes)
-region_code_47_0 = int("47.0" in region_codes)
-region_code_50_0 = int("50.0" in region_codes)
-region_code_others = int("Otros" in region_codes)
+region_code_2_0 = int(region_codes == "2.0")
+region_code_3_0 = int(region_codes == "3.0")
+region_code_6_0 = int(region_codes == "6.0")
+region_code_7_0 = int(region_codes == "7.0")
+region_code_8_0 = int(region_codes == "8.0")
+region_code_11_0 = int(region_codes == "11.0")
+region_code_12_0 = int(region_codes == "12.0")
+region_code_14_0 = int(region_codes == "14.0")
+region_code_15_0 = int(region_codes == "15.0")
+region_code_18_0 = int(region_codes == "18.0")
+region_code_28_0 = int(region_codes == "28.0")
+region_code_29_0 = int(region_codes == "29.0")
+region_code_30_0 = int(region_codes == "30.0")
+region_code_33_0 = int(region_codes == "33.0")
+region_code_35_0 = int(region_codes == "35.0")
+region_code_36_0 = int(region_codes == "36.0")
+region_code_37_0 = int(region_codes == "37.0")
+region_code_39_0 = int(region_codes == "39.0")
+region_code_41_0 = int(region_codes == "41.0")
+region_code_45_0 = int(region_codes == "45.0")
+region_code_46_0 = int(region_codes == "46.0")
+region_code_47_0 = int(region_codes == "47.0")
+region_code_50_0 = int(region_codes == "50.0")
+region_code_others = int(region_codes == "Otros")
 
 # Valores numéricos
 age = st.number_input("Edad", min_value=0, value=0)
