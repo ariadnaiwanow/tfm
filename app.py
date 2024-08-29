@@ -12,17 +12,18 @@ def load_model():
 
 def potencial_prediction(data):
     scaler = load_scaler()
-    
-    # Verificar que los datos tengan el tamaño correcto
+	
+	# Verificar que los datos tengan el tamaño correcto													
     if len(data) != 34:
         return {"error": "La entrada debe contener exactamente 34 valores."}
 
     # Convertir la lista de entrada a un array numpy y escalarla
     data_array = np.array([data])  # Convertir a array 2D para el scaler
+		
     try:
         data_scaled = scaler.transform(data_array)
     except Exception as e:
-        return {"error": f"Error al transformar los datos: {str(e)}"}
+        return {"error": f"Error al transformar los datos: {str(e)}"}															 
 
     # Cargar el modelo
     gb_model = load_model()
@@ -31,7 +32,7 @@ def potencial_prediction(data):
     try:
         prediction = gb_model.predict(data_scaled)
     except Exception as e:
-        return {"error": f"Error al predecir la clase: {str(e)}"}
+        return {"error": f"Error al predecir la clase: {str(e)}"}																 
 
     # Mapear la clase predicha a una cadena descriptiva
     class_name = "ALTA probabilidad de adquirir servicio -Pension Plan-" if prediction == 1 else "BAJA probabilidad de adquirir servicio -Pension Plan-"
@@ -110,8 +111,8 @@ log_age = np.log10(age + 1)  # Se suma 1 para evitar log(0)
 log_salary = np.log10(salary + 1)  # Se suma 1 para evitar log(0)
 
 # Cliente Activo
-active_customer = st.selectbox("Cliente Activo", ["No", "Sí"])
-active_customer_val = 1 if active_customer == "Sí" else 0
+active_customer = st.selectbox("Cliente Activo", ["Seleccionar", "Sí", "No"])
+active_customer_val = 1 if active_customer == "Sí" else (0 if active_customer == "No" else None)
 
 # Crear la lista de características para el modelo
 features = [
@@ -128,9 +129,9 @@ features = [
 
 # Botón para realizar la predicción
 if st.button("Analizar"):
-    result = potencial_prediction(features)
-    if 'error' in result:
-        st.error(result['error'])
-    else:
+    if active_customer_val is not None:
+        result = potencial_prediction(features)
         st.subheader("Resultado:")
-        st.info("El resultado es: " + result + ".")
+        st.info("El resultado es: " + str(result) + ".")
+    else:
+        st.error("Por favor, seleccione el estado del cliente activo.")
