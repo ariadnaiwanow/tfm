@@ -109,9 +109,10 @@ salary = st.number_input("Salario", min_value=0, value=0)
 log_age = np.log10(age + 1)  # Se suma 1 para evitar log(0)
 log_salary = np.log10(salary + 1)  # Se suma 1 para evitar log(0)
 
-active_customer = st.number_input("Cliente Activo", min_value=0.0, value=0.0, format="%.6f")
-								
-														   
+
+# Cliente Activo
+active_customer = st.selectbox("Cliente Activo", ["No", "Sí"])
+active_customer_val = 1 if active_customer == "Sí" else 0
 																 
 
 # Crear la lista de características para el modelo
