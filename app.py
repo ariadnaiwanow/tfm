@@ -133,4 +133,4 @@ features = [
 if st.button("Analizar"):
     result = potencial_prediction(features)
     st.subheader("Resultado:")
-    st.info("El resultado es: " + result + ".")
+    st.info("El resultado es: " + str(result) + ".")
