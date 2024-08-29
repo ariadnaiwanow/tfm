@@ -104,11 +104,9 @@ region_code_others = int(region_codes == "Otros")
 
 # Valores numéricos
 age = st.number_input("Edad", min_value=0, value=0)
-salary = st.number_input("Salario", min_value=0, value=0)
 
 # Convertir edad y salario a log
 log_age = np.log10(age + 1)  # Se suma 1 para evitar log(0)
-log_salary = np.log10(salary + 1)  # Se suma 1 para evitar log(0)
 
 # Cliente Activo
 active_customer = st.selectbox("Cliente Activo", ["Seleccionar", "Sí", "No"])
@@ -124,7 +122,7 @@ features = [
     region_code_29_0, region_code_30_0, region_code_33_0, region_code_35_0, 
     region_code_36_0, region_code_39_0, region_code_41_0, region_code_45_0, 
     region_code_46_0, region_code_47_0, region_code_50_0, region_code_others, 
-    log_age, log_salary
+    log_age
 ]
 
 # Botón para realizar la predicción
