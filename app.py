@@ -12,8 +12,8 @@ def load_model():
 
 def potencial_prediction(data):
     scaler = load_scaler()
-    if len(data) != 39:
-        return {"error": "La entrada debe contener exactamente 39 valores."}
+    if len(data) != 35:
+        return {"error": "La entrada debe contener exactamente 35 valores."}
 
     # Convertir la lista de entrada a un array numpy y escalarla
     data_array = np.array([data])  # Convertir a array 2D para el scaler
