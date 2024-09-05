@@ -1,12 +1,12 @@
-fastapi
 scikit-learn==1.3.2
-
-uvicorn
 numpy
 streamlit==1.37.1
-
 pandas
 matplotlib
 seaborn
+
+# API (en desarrollo)
+fastapi
+uvicorn
 
 
