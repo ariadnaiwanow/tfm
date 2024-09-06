@@ -13,7 +13,7 @@ easyMoney se enfrenta al desafío de mejorar la rentabilidad de su base de clien
 Análisis Descriptivo
 -----------------------------------
 Primero, realicé un análisis descriptivo de los datos utilizando Power BI. Se creó un dashboard que permite visualizar los indicadores clave de rendimiento (KPIs) y realizar un análisis evolutivo de las ventas y la rentabilidad de los productos de easyMoney. Este análisis mostró que los "Planes de Pensiones" eran el producto más rentable con el menor esfuerzo comercial, por lo que se decidió enfocar las próximas campañas en este servicio.
-Dashboard: https://app.powerbi.com/view?r=eyJrIjoiMTgzMWJjMGMtODVkMi00NmQwLWIyMDYtZjU1ZWZkMDI0Yjc2IiwidCI6ImM0MGJlNDg3LWE3MTYtNDU5Ni05YTY1LTcyOWNlMjZmYzM1NiIsImMiOjR9
+Acceso dashboard: https://app.powerbi.com/view?r=eyJrIjoiMzc4YTk1ZTctOGU3OC00Mjg2LTkzODgtOWZiNGNmMWM3MWZlIiwidCI6ImM0MGJlNDg3LWE3MTYtNDU5Ni05YTY1LTcyOWNlMjZmYzM1NiIsImMiOjR9&pageName=ad4df9508505b3802ca0
 
 Análisis Predictivo
 -----------------------------------
@@ -60,7 +60,7 @@ Se evaluaron seis modelos de clasificación y se decidió utilizar Gradient Boos
 Aplicación Web
 -----------------------------------
 Finalmente, desarrollé una aplicación web interactiva utilizando Streamlit, que permite a los usuarios probar el modelo con distintos perfiles de clientes y visualizar los resultados de predicción en tiempo real. Esta herramienta facilita la toma de decisiones para el equipo de marketing de easyMoney, permitiendo ajustar las campañas basadas en los clientes más propensos a adquirir el producto.
-https://ari-tfm-easy-money.streamlit.app/
+Acceso app web: https://ari-tfm-easy-money.streamlit.app/
 
 Impacto Esperado
 -----------------------------------
