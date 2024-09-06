@@ -13,6 +13,7 @@ easyMoney se enfrenta al desafío de mejorar la rentabilidad de su base de clien
 Análisis Descriptivo
 -----------------------------------
 Primero, realicé un análisis descriptivo de los datos utilizando Power BI. Se creó un dashboard que permite visualizar los indicadores clave de rendimiento (KPIs) y realizar un análisis evolutivo de las ventas y la rentabilidad de los productos de easyMoney. Este análisis mostró que los "Planes de Pensiones" eran el producto más rentable con el menor esfuerzo comercial, por lo que se decidió enfocar las próximas campañas en este servicio.
+Dashboard: https://app.powerbi.com/view?r=eyJrIjoiMTgzMWJjMGMtODVkMi00NmQwLWIyMDYtZjU1ZWZkMDI0Yjc2IiwidCI6ImM0MGJlNDg3LWE3MTYtNDU5Ni05YTY1LTcyOWNlMjZmYzM1NiIsImMiOjR9
 
 Análisis Predictivo
 -----------------------------------
