@@ -59,6 +59,7 @@ Se evaluaron seis modelos de clasificación y se decidió utilizar Gradient Boos
 Aplicación Web
 -----------------------------------
 Finalmente, desarrollé una aplicación web interactiva utilizando Streamlit, que permite a los usuarios probar el modelo con distintos perfiles de clientes y visualizar los resultados de predicción en tiempo real. Esta herramienta facilita la toma de decisiones para el equipo de marketing de easyMoney, permitiendo ajustar las campañas basadas en los clientes más propensos a adquirir el producto.
+https://ari-tfm-easy-money.streamlit.app/
 
 Impacto Esperado
 -----------------------------------
