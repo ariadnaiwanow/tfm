@@ -40,24 +40,20 @@ def potencial_prediction(data):
 
     return class_name
 
-st.header("Potenciales clientes -Pension Plan- App")
+st.header("EasyMoney \n App Potenciales clientes -Pension Plan-")
 
-st.subheader("Ingresar Características del Cliente")
+st.subheader("Ingresar Características del Cliente:")
 
-# Crear la interfaz de entrada
+# Valores
+debit_card = st.checkbox("Tiene Tarjeta de Débito", value=False)
+em_acount = st.checkbox("Tiene Cuenta EM", value=False)
 
-# Tarjeta de débito y cuenta EMC
-debit_card = st.checkbox("Tarjeta de Débito", value=False)
-em_acount = st.checkbox("Cuenta EMC", value=False)
-
-# Género
-gender = st.selectbox("Género:", ["Seleccionar", "Hombre", "Mujer"])
+gender = st.selectbox("Seleccione Género:", ["Seleccionar", "Hombre", "Mujer"])
 gender_val = True if gender == "Hombre" else False
 
-# Canales de Entrada
 entry_channels = st.selectbox(
-    "Canales de Entrada:",
-    ["KAT", "KFC", "KHE", "KHK", "KHM", "KHN", "Otros"]
+    "Seleccione Canales de Entrada:",
+    ["Seleccionar", "KAT", "KFC", "KHE", "KHK", "KHM", "KHN", "Otros"]
 )
 entry_channel_KAT = int(entry_channels == "KAT")
 entry_channel_KFC = int(entry_channels == "KFC")
@@ -67,23 +63,20 @@ entry_channel_KHM = int(entry_channels == "KHM")
 entry_channel_KHN = int(entry_channels == "KHN")
 entry_channel_others = int(entry_channels == "Otros")
 
-# Segmentos
 segments = st.selectbox(
-    "Segmentos:",
-    ["01 - TOP", "02 - PARTICULARES", "03 - UNIVERSITARIO"]
+    "Seleccione Segmentos:",
+    ["Seleccionar", "01 - TOP", "02 - PARTICULARES", "03 - UNIVERSITARIO"]
 )
 segment_01_TOP = int(segments == "01 - TOP")
 segment_02_PARTICULARES = int(segments == "02 - PARTICULARES")
 segment_03_UNIVERSITARIO = int(segments == "03 - UNIVERSITARIO")
 
-# Códigos de Región (usamos un selectbox en lugar de checkboxes)
 region_codes = st.selectbox(
-    "Código de Región:",
-    ["2.0", "3.0", "6.0", "7.0", "8.0", "9.0", "11.0", "12.0", "13.0", "14.0", 
+    "Seleccione Código de Región:",
+    ["Seleccionar", "2.0", "3.0", "6.0", "7.0", "8.0", "9.0", "11.0", "12.0", "13.0", "14.0", 
      "15.0", "17.0", "18.0", "21.0", "28.0", "29.0", "30.0", "33.0", "35.0", 
      "36.0", "37.0", "39.0", "41.0", "43.0", "45.0", "46.0", "47.0", "50.0", "Otros"]
 )
-
 # Mapear los códigos de región a valores binarios
 region_code_map = {
     "2.0": 0, "3.0": 0, "6.0": 0, "7.0": 0, "8.0": 0, "9.0": 0, "11.0": 0, "12.0": 0, 
@@ -93,14 +86,11 @@ region_code_map = {
 }
 region_code_map[region_codes] = 1  # Solo la región seleccionada será 1
 
-
-# Edad y antigüedad
-age = st.number_input("Edad", min_value=0, value=0)
+age = st.number_input("Edad del cliente", min_value=0, value=0)
 log_log_age = np.log10(np.log10(age + 1) + 1)  # Usamos log(log(edad + 1))
 
-# Fecha de alta en easyMoney (mes y año)
-mes_alta = st.selectbox("Mes de Alta:", list(range(1, 13)))  # De 1 a 12
-año_alta = st.number_input("Año de Alta:", min_value=1900, max_value=datetime.now().year, value=2000)
+mes_alta = st.selectbox("Mes de Alta en easyMoney:", list(range(1, 13)))  # De 1 a 12
+año_alta = st.number_input("Año de Alta en easyMoney:", min_value=1900, max_value=datetime.now().year, value=2000)
 
 # Calcular días de antigüedad desde la fecha de alta hasta el día actual
 fecha_alta = datetime(año_alta, mes_alta, 1)  # Se asume el primer día del mes
@@ -109,8 +99,7 @@ dias_antiguedad = (datetime.now() - fecha_alta).days
 # Convertir los días de antigüedad a log-log
 log_log_dias_antiguedad = np.log10(np.log10(dias_antiguedad + 1) + 1)
 
-# Cliente Activo
-active_customer = st.selectbox("Cliente Activo", ["Seleccionar", "Sí", "No"])
+active_customer = st.selectbox("Cliente actualmente Activo?", ["Seleccionar", "Sí", "No"])
 active_customer_val = 1 if active_customer == "Sí" else 0
 
 # Crear la lista de características para el modelo
@@ -124,7 +113,7 @@ features = [
 ]
 
 # Botón para realizar la predicción
-if st.button("Analizar"):
+if st.button("ANALIZAR"):
     result = potencial_prediction(features)
     st.subheader("Resultado:")
     st.info("El resultado es: " + str(result) + ".")
