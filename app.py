@@ -51,7 +51,7 @@ em_acount = st.checkbox("Cuenta EMC", value=False)
 
 # Género
 gender = st.selectbox("Género:", ["Seleccionar", "Hombre", "Mujer"])
-gender_val = int(gender == "Hombre")
+gender_val = True if gender == "Hombre" else False
 
 # Canales de Entrada
 entry_channels = st.selectbox(
@@ -75,44 +75,37 @@ segment_01_TOP = int(segments == "01 - TOP")
 segment_02_PARTICULARES = int(segments == "02 - PARTICULARES")
 segment_03_UNIVERSITARIO = int(segments == "03 - UNIVERSITARIO")
 
-# Códigos de Región (Agregamos todas las regiones como variables binarias)
-region_codes = {
-    "2.0": st.checkbox("Código de Región 2.0"),
-    "3.0": st.checkbox("Código de Región 3.0"),
-    "6.0": st.checkbox("Código de Región 6.0"),
-    "7.0": st.checkbox("Código de Región 7.0"),
-    "8.0": st.checkbox("Código de Región 8.0"),
-    "9.0": st.checkbox("Código de Región 9.0"),
-    "11.0": st.checkbox("Código de Región 11.0"),
-    "12.0": st.checkbox("Código de Región 12.0"),
-    "13.0": st.checkbox("Código de Región 13.0"),
-    "14.0": st.checkbox("Código de Región 14.0"),
-    "15.0": st.checkbox("Código de Región 15.0"),
-    "17.0": st.checkbox("Código de Región 17.0"),
-    "18.0": st.checkbox("Código de Región 18.0"),
-    "21.0": st.checkbox("Código de Región 21.0"),
-    "28.0": st.checkbox("Código de Región 28.0"),
-    "29.0": st.checkbox("Código de Región 29.0"),
-    "30.0": st.checkbox("Código de Región 30.0"),
-    "33.0": st.checkbox("Código de Región 33.0"),
-    "35.0": st.checkbox("Código de Región 35.0"),
-    "36.0": st.checkbox("Código de Región 36.0"),
-    "37.0": st.checkbox("Código de Región 37.0"),
-    "39.0": st.checkbox("Código de Región 39.0"),
-    "41.0": st.checkbox("Código de Región 41.0"),
-    "43.0": st.checkbox("Código de Región 43.0"),
-    "45.0": st.checkbox("Código de Región 45.0"),
-    "46.0": st.checkbox("Código de Región 46.0"),
-    "47.0": st.checkbox("Código de Región 47.0"),
-    "50.0": st.checkbox("Código de Región 50.0"),
-    "Otros": st.checkbox("Código de Región Otros")
+# Códigos de Región (usamos un selectbox en lugar de checkboxes)
+region_codes = st.selectbox(
+    "Código de Región:",
+    ["2.0", "3.0", "6.0", "7.0", "8.0", "9.0", "11.0", "12.0", "13.0", "14.0", 
+     "15.0", "17.0", "18.0", "21.0", "28.0", "29.0", "30.0", "33.0", "35.0", 
+     "36.0", "37.0", "39.0", "41.0", "43.0", "45.0", "46.0", "47.0", "50.0", "Otros"]
+)
+
+# Mapear los códigos de región a valores binarios
+region_code_map = {
+    "2.0": 0, "3.0": 0, "6.0": 0, "7.0": 0, "8.0": 0, "9.0": 0, "11.0": 0, "12.0": 0, 
+    "13.0": 0, "14.0": 0, "15.0": 0, "17.0": 0, "18.0": 0, "21.0": 0, "28.0": 0, 
+    "29.0": 0, "30.0": 0, "33.0": 0, "35.0": 0, "36.0": 0, "37.0": 0, "39.0": 0, 
+    "41.0": 0, "43.0": 0, "45.0": 0, "46.0": 0, "47.0": 0, "50.0": 0, "Otros": 0
 }
+region_code_map[region_codes] = 1  # Solo la región seleccionada será 1
+
 
 # Edad y antigüedad
 age = st.number_input("Edad", min_value=0, value=0)
 log_log_age = np.log10(np.log10(age + 1) + 1)  # Usamos log(log(edad + 1))
 
-dias_antiguedad = st.number_input("Días de Antigüedad", min_value=0, value=0)
+# Fecha de alta en easyMoney (mes y año)
+mes_alta = st.selectbox("Mes de Alta:", list(range(1, 13)))  # De 1 a 12
+año_alta = st.number_input("Año de Alta:", min_value=1900, max_value=datetime.now().year, value=2000)
+
+# Calcular días de antigüedad desde la fecha de alta hasta el día actual
+fecha_alta = datetime(año_alta, mes_alta, 1)  # Se asume el primer día del mes
+dias_antiguedad = (datetime.now() - fecha_alta).days
+
+# Convertir los días de antigüedad a log-log
 log_log_dias_antiguedad = np.log10(np.log10(dias_antiguedad + 1) + 1)
 
 # Cliente Activo
