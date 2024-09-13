@@ -40,6 +40,9 @@ def potencial_prediction(data):
 
     return class_name
 
+
+st.image("https://raw.githubusercontent.com/ariadnaiwanow/tfm/main/logo-easymoney.png", width=150)
+
 st.header("EasyMoney - App Potenciales clientes para Pension Plan")
 
 st.subheader("Ingresar Características del Cliente:")
