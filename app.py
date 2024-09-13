@@ -12,14 +12,14 @@ def load_model():
 
 def potencial_prediction(data):
     scaler = load_scaler()
-	
-	# Verificar que los datos tengan el tamaño correcto													
-    if len(data) != 34:
-        return {"error": "La entrada debe contener exactamente 34 valores."}
+
+    # Verificar que los datos tengan el tamaño correcto													  
+    if len(data) != 46:
+        return {"error": "La entrada debe contener exactamente 46 valores."}
 
     # Convertir la lista de entrada a un array numpy y escalarla
     data_array = np.array([data])  # Convertir a array 2D para el scaler
-		
+    
     try:
         data_scaled = scaler.transform(data_array)
     except Exception as e:
@@ -45,26 +45,25 @@ st.subheader("Ingresar Características del Cliente")
 
 # Crear la interfaz de entrada
 
-# Tarjeta de débito
+# Tarjeta de débito y cuenta EMC
 debit_card = st.checkbox("Tarjeta de Débito", value=False)
 em_acount = st.checkbox("Cuenta EMC", value=False)
 
 # Género
 gender = st.selectbox("Género:", ["Seleccionar", "Hombre", "Mujer"])
-gender_H = int(gender == "Hombre")
-gender_V = int(gender == "Mujer")
+gender_val = int(gender == "Hombre")
 
 # Canales de Entrada
 entry_channels = st.selectbox(
     "Canales de Entrada:",
-    ["KAT", "KFC", "KHK", "KHM", "KHN", "KHQ", "Otros"]
+    ["KAT", "KFC", "KHE", "KHK", "KHM", "KHN", "Otros"]
 )
 entry_channel_KAT = int(entry_channels == "KAT")
 entry_channel_KFC = int(entry_channels == "KFC")
+entry_channel_KHE = int(entry_channels == "KHE")
 entry_channel_KHK = int(entry_channels == "KHK")
 entry_channel_KHM = int(entry_channels == "KHM")
 entry_channel_KHN = int(entry_channels == "KHN")
-entry_channel_KHQ = int(entry_channels == "KHQ")
 entry_channel_others = int(entry_channels == "Otros")
 
 # Segmentos
@@ -79,57 +78,40 @@ segment_03_UNIVERSITARIO = int(segments == "03 - UNIVERSITARIO")
 # Códigos de Región
 region_codes = st.selectbox(
     "Códigos de Región:",
-    ["3.0", "8.0", "11.0", "14.0", "15.0", "18.0", "28.0", "29.0", "30.0", "33.0", 
-     "35.0", "36.0", "39.0", "41.0", "45.0", "46.0", "47.0", "50.0", "Otros"]
+    ["2.0", "3.0", "6.0", "7.0", "8.0", "9.0", "11.0", "12.0", "13.0", "14.0", 
+     "15.0", "17.0", "18.0", "21.0", "28.0", "29.0", "30.0", "33.0", "35.0", 
+     "36.0", "37.0", "39.0", "41.0", "43.0", "45.0", "46.0", "47.0", "50.0", "Otros"]
 )
-region_code_3_0 = int(region_codes == "3.0")
-region_code_8_0 = int(region_codes == "8.0")
-region_code_11_0 = int(region_codes == "11.0")
-region_code_14_0 = int(region_codes == "14.0")
-region_code_15_0 = int(region_codes == "15.0")
-region_code_18_0 = int(region_codes == "18.0")
-region_code_28_0 = int(region_codes == "28.0")
-region_code_29_0 = int(region_codes == "29.0")
-region_code_30_0 = int(region_codes == "30.0")
-region_code_33_0 = int(region_codes == "33.0")
-region_code_35_0 = int(region_codes == "35.0")
-region_code_36_0 = int(region_codes == "36.0")
-region_code_39_0 = int(region_codes == "39.0")
-region_code_41_0 = int(region_codes == "41.0")
-region_code_45_0 = int(region_codes == "45.0")
-region_code_46_0 = int(region_codes == "46.0")
-region_code_47_0 = int(region_codes == "47.0")
-region_code_50_0 = int(region_codes == "50.0")
-region_code_others = int(region_codes == "Otros")
+region_code_map = {
+    "2.0": 0, "3.0": 0, "6.0": 0, "7.0": 0, "8.0": 0, "9.0": 0, "11.0": 0, "12.0": 0, "13.0": 0, 
+    "14.0": 0, "15.0": 0, "17.0": 0, "18.0": 0, "21.0": 0, "28.0": 0, "29.0": 0, "30.0": 0, "33.0": 0, 
+    "35.0": 0, "36.0": 0, "37.0": 0, "39.0": 0, "41.0": 0, "43.0": 0, "45.0": 0, "46.0": 0, 
+    "47.0": 0, "50.0": 0, "Otros": 0
+}
+region_code_map[region_codes] = 1
 
-# Valores numéricos
+# Edad y antigüedad
 age = st.number_input("Edad", min_value=0, value=0)
+log_log_age = np.log10(np.log10(age + 1) + 1)  # Usamos log(log(edad + 1))
 
-# Convertir edad y salario a log
-log_age = np.log10(age + 1)  # Se suma 1 para evitar log(0)
+dias_antiguedad = st.number_input("Días de Antigüedad", min_value=0, value=0)
+log_log_dias_antiguedad = np.log10(np.log10(dias_antiguedad + 1) + 1)
 
 # Cliente Activo
 active_customer = st.selectbox("Cliente Activo", ["Seleccionar", "Sí", "No"])
-active_customer_val = 1 if active_customer == "Sí" else (0 if active_customer == "No" else None)
+active_customer_val = 1 if active_customer == "Sí" else 0
 
 # Crear la lista de características para el modelo
 features = [
-    gender_H, active_customer_val, int(debit_card), int(em_acount), entry_channel_KAT, 
-    entry_channel_KFC, entry_channel_KHK, entry_channel_KHM, entry_channel_KHN, 
-    entry_channel_KHQ, entry_channel_others, segment_01_TOP, segment_02_PARTICULARES, 
-    segment_03_UNIVERSITARIO, region_code_3_0, region_code_8_0, region_code_11_0, 
-    region_code_14_0, region_code_15_0, region_code_18_0, region_code_28_0, 
-    region_code_29_0, region_code_30_0, region_code_33_0, region_code_35_0, 
-    region_code_36_0, region_code_39_0, region_code_41_0, region_code_45_0, 
-    region_code_46_0, region_code_47_0, region_code_50_0, region_code_others, 
-    log_age
+    gender_val, active_customer_val, int(debit_card), int(em_acount), entry_channel_KAT, 
+    entry_channel_KFC, entry_channel_KHE, entry_channel_KHK, entry_channel_KHM, 
+    entry_channel_KHN, entry_channel_others, segment_01_TOP, segment_02_PARTICULARES, 
+    segment_03_UNIVERSITARIO, *region_code_map.values(), log_log_age, log_log_dias_antiguedad
 ]
 
 # Botón para realizar la predicción
 if st.button("Analizar"):
-    if active_customer_val is not None:
-        result = potencial_prediction(features)
-        st.subheader("Resultado:")
-        st.info("El resultado es: " + str(result) + ".")
-    else:
-        st.error("Por favor, seleccione el estado del cliente activo.")
+    result = potencial_prediction(features)
+    st.subheader("Resultado:")
+    st.info("El resultado es: " + str(result) + ".")
+
