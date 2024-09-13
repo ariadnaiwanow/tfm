@@ -14,8 +14,8 @@ def potencial_prediction(data):
     scaler = load_scaler()
 
     # Verificar que los datos tengan el tamaño correcto													  
-    if len(data) != 46:  # Cambiamos a 46, porque el modelo espera 46 características
-        return {"error": f"La entrada debe contener exactamente 46 valores, pero tiene {len(data)} valores."}
+    if len(data) != 45:  # Cambiamos a 45, porque el modelo espera 46 características
+        return {"error": f"La entrada debe contener exactamente 45 valores, pero tiene {len(data)} valores."}
 
     # Convertir la lista de entrada a un array numpy y escalarla
     data_array = np.array([data])  # Convertir a array 2D para el scaler
