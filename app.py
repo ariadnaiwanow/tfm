@@ -59,7 +59,7 @@ st.markdown(
         margin-right: auto;
     }
     </style>
-    <h1 class="title">App Potenciales Clientes para Pension Plan</h1>
+    <h1 class="title">App Potenciales Clientes \n para Pension Plan</h1>
     """,
     unsafe_allow_html=True
 )
