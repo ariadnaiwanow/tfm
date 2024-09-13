@@ -40,6 +40,12 @@ def potencial_prediction(data):
 
     return class_name
 
+st.markdown(
+    """
+    <img src="https://raw.githubusercontent.com/ariadnaiwanow/tfm/main/logo-easymoney.png" width="190" class="logo">
+    """,
+    unsafe_allow_html=True
+)
 
 st.markdown(
     """
@@ -53,17 +59,11 @@ st.markdown(
         margin-right: auto;
     }
     </style>
-    <h1 class="title">EasyMoney - App Potenciales Clientes para Pension Plan</h1>
+    <h1 class="title">App Potenciales Clientes para Pension Plan</h1>
     """,
     unsafe_allow_html=True
 )
 
-st.markdown(
-    """
-    <img src="https://raw.githubusercontent.com/ariadnaiwanow/tfm/main/logo-easymoney.png" width="150" class="logo">
-    """,
-    unsafe_allow_html=True
-)
 
 st.subheader("Ingresar Características del Cliente:")
 
