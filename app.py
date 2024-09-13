@@ -40,7 +40,7 @@ def potencial_prediction(data):
 
     return class_name
 
-st.header("EasyMoney \n App Potenciales clientes -Pension Plan-")
+st.header("EasyMoney - App Potenciales clientes para Pension Plan")
 
 st.subheader("Ingresar Características del Cliente:")
 
@@ -48,12 +48,12 @@ st.subheader("Ingresar Características del Cliente:")
 debit_card = st.checkbox("Tiene Tarjeta de Débito", value=False)
 em_acount = st.checkbox("Tiene Cuenta EM", value=False)
 
-gender = st.selectbox("Seleccione Género:", ["Seleccionar", "Hombre", "Mujer"])
+gender = st.selectbox("Seleccione Género:", ["Elegir opcion...", "Hombre", "Mujer"])
 gender_val = True if gender == "Hombre" else False
 
 entry_channels = st.selectbox(
     "Seleccione Canales de Entrada:",
-    ["Seleccionar", "KAT", "KFC", "KHE", "KHK", "KHM", "KHN", "Otros"]
+    ["Elegir opcion...", "KAT", "KFC", "KHE", "KHK", "KHM", "KHN", "Otros"]
 )
 entry_channel_KAT = int(entry_channels == "KAT")
 entry_channel_KFC = int(entry_channels == "KFC")
@@ -65,7 +65,7 @@ entry_channel_others = int(entry_channels == "Otros")
 
 segments = st.selectbox(
     "Seleccione Segmentos:",
-    ["Seleccionar", "01 - TOP", "02 - PARTICULARES", "03 - UNIVERSITARIO"]
+    ["Elegir opcion...", "01 - TOP", "02 - PARTICULARES", "03 - UNIVERSITARIO"]
 )
 segment_01_TOP = int(segments == "01 - TOP")
 segment_02_PARTICULARES = int(segments == "02 - PARTICULARES")
@@ -73,7 +73,7 @@ segment_03_UNIVERSITARIO = int(segments == "03 - UNIVERSITARIO")
 
 region_codes = st.selectbox(
     "Seleccione Código de Región:",
-    ["Seleccionar", "2.0", "3.0", "6.0", "7.0", "8.0", "9.0", "11.0", "12.0", "13.0", "14.0", 
+    ["Elegir opcion...", "2.0", "3.0", "6.0", "7.0", "8.0", "9.0", "11.0", "12.0", "13.0", "14.0", 
      "15.0", "17.0", "18.0", "21.0", "28.0", "29.0", "30.0", "33.0", "35.0", 
      "36.0", "37.0", "39.0", "41.0", "43.0", "45.0", "46.0", "47.0", "50.0", "Otros"]
 )
@@ -99,7 +99,7 @@ dias_antiguedad = (datetime.now() - fecha_alta).days
 # Convertir los días de antigüedad a log-log
 log_log_dias_antiguedad = np.log10(np.log10(dias_antiguedad + 1) + 1)
 
-active_customer = st.selectbox("Cliente actualmente Activo?", ["Seleccionar", "Sí", "No"])
+active_customer = st.selectbox("Cliente actualmente Activo?", ["Elegir opcion...", "Sí", "No"])
 active_customer_val = 1 if active_customer == "Sí" else 0
 
 # Crear la lista de características para el modelo
