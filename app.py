@@ -119,7 +119,7 @@ features = [
     entry_channel_KAT, entry_channel_KFC, entry_channel_KHE, entry_channel_KHK, 
     entry_channel_KHM, entry_channel_KHN, entry_channel_others, 
     segment_01_TOP, segment_02_PARTICULARES, segment_03_UNIVERSITARIO, 
-    *region_codes.values(),  # Agregamos todas las regiones
+    *region_codes_map.values(),  # Agregamos todas las regiones
     log_log_age, log_log_dias_antiguedad
 ]
 
