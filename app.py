@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle 
 import numpy as np 
+from datetime import datetime
 
 def load_scaler():
     scaler = pickle.load(open("scaler.pkl", "rb"))
